@@ -1,0 +1,29 @@
+{
+    "name": "HeXaDeX",
+    "description": "HeXaDeX is a bot which acts as a helper for trainers on Telegram. You can check information of Pokemon, Showdown usage and organize Raids as quickly as possible, without ever leaving the app",
+    "keywords": [
+      "HeXaDeX"
+    ],
+    "repository": "https://github.com/anilchauhanxda/inhumanDexBot",
+    "env": {
+      "BOT_TOKEN": {
+        "description": "1860622985:AAHK7oKCyPHLpAAEJ0tXUUR5XvmwCaa7bl8"
+      },
+      "API_ID": {
+        "description": "4159396"
+      },
+      "API_HASH": {
+        "description": "adc6d985a765e4fa2f305bf04b8d6443"
+      },
+      "SUDO": {
+        "description": "1447209433",
+        "value": "1313665327, 239508098"
+      }
+    },
+    "addons": [],
+    "buildpacks": [
+      {
+        "url": "heroku/python"
+      }
+    ]
+  }
