@@ -545,6 +545,14 @@ def about(app, message):
         )
     ]])
     
+    app.send_message(
+        chat_id=message.chat.id,
+        text=text, 
+        reply_markup=markup,
+        disable_web_page_preview=True
+    )
+    
+    
     
 
 # ===== Raid commands =====
