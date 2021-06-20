@@ -375,7 +375,7 @@ def pkmn_search(app, message):
 
 def best_matches(app, message, result):
     text = texts['results']
-    emoji_list = ['❶.', '❷.', '❸.']
+    emoji_list = ['❶', '❷', '❸']
     index = 0
     for dictt in result:
         pkmn = dictt['pkmn']
