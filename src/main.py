@@ -314,10 +314,10 @@ def poketypes_back(client: app, callback_query: CallbackQuery):
         
 # ===== Data command =====
 @app.on_callback_query(Filters.create(lambda _, query: 'basic_infos' in query.data))
-@app.on_message(Filters.command(['data', 'data@hexa_dex_bot']))
+@app.on_message(Filters.command(['dex', 'dex@hexa_dex_bot']))
 def pkmn_search(app, message):
     try:
-        if message.text == '/data' or message.text == '/data@hexa_dex_bot':
+        if message.text == '/dex' or message.text == '/dex@hexa_dex_bot':
             app.send_message(message.chat.id, texts['error1'], parse_mode='HTML')
             return None
         pkmn = func.find_name(message.text)
@@ -375,7 +375,7 @@ def pkmn_search(app, message):
 
 def best_matches(app, message, result):
     text = texts['results']
-    emoji_list = ['❶', '❷', '❸']
+    emoji_list = ['❶.', '❷.', '❸.']
     index = 0
     for dictt in result:
         pkmn = dictt['pkmn']
