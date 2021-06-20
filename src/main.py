@@ -574,7 +574,7 @@ def call_pin(app, message):
 @app.on_message(Filters.create(lambda _, message: message.new_chat_members))
 def bot_added(app, message):
     for new_member in message.new_chat_members:
-        if new_member.id == 1269349088:
+        if new_member.id == 1860622985:
             text = texts['added']
             app.send_message(
                 chat_id=message.chat.id,
