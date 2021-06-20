@@ -352,11 +352,11 @@ def pkmn_search(app, message):
     ],
     [
         InlineKeyboardButton(
-            text='⚔️ Moveset',
+            text='⚔ Moveset',
             callback_data='moveset/'+pkmn+'/'+form
         ),
         InlineKeyboardButton(
-            text='🏠 Locations',
+            text='🗾 Locations',
             callback_data='locations/'+pkmn+'/'+form
         )
     ]]
@@ -375,7 +375,7 @@ def pkmn_search(app, message):
 
 def best_matches(app, message, result):
     text = texts['results']
-    emoji_list = ['1️⃣', '2️⃣', '3️⃣']
+    emoji_list = ['❶', '❷', '❸']
     index = 0
     for dictt in result:
         pkmn = dictt['pkmn']
@@ -389,7 +389,7 @@ def best_matches(app, message, result):
             percentage
         )
         if index == 0:
-            text += ' [<b>⭐️ Top result</b>]'
+            text += ' [<b>Top result!</b>]'
         index += 1
     app.send_message(message.chat.id, text, parse_mode='HTML')
 
@@ -414,11 +414,11 @@ def all_infos(app, call):
     ],
     [
         InlineKeyboardButton(
-            text='⚔️ Moveset',
+            text='⚔ Moveset',
             callback_data='moveset/'+pkmn+'/'+form
         ),
         InlineKeyboardButton(
-            text='🏠 Locations',
+            text='🗾 Locations',
             callback_data='locations/'+pkmn+'/'+form
         )
     ]]
@@ -457,7 +457,7 @@ def locations(app, call):
 
     markup = InlineKeyboardMarkup([[
         InlineKeyboardButton(
-            text='⚔️ Moveset',
+            text='⚔ Moveset',
             callback_data='moveset/'+pkmn+'/'+form
         )
     ],
