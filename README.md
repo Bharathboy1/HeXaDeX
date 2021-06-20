@@ -1,6 +1,6 @@
 ![Logo](assets/logo.png)
 
-## What is Rotomgram?
+## What is HeXaDeX?
 HeXaDeX is a Telegram Bot that provides all informations about Pokémon. It's accessible through this link https://t.me/hexa_dex_bot or writing @hexa_dex_bot on Telegram search bar
 
 ## Deploy to Heroku
