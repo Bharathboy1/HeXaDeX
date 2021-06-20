@@ -34,7 +34,7 @@ def find_name(pkmn):
     pkmn = re.sub('♀', '_f', pkmn)  # For Nidoran♀
     pkmn = re.sub('♂', '_m', pkmn)  # For Nidoran♂
     pkmn = re.sub('[èé]', 'e', pkmn)  # For Flabébé
-    pkmn = re.sub('/data(@hexa_dex_bot)* ', '', pkmn)
+    pkmn = re.sub('/dex(@hexa_dex_bot)* ', '', pkmn)
     pkmn = re.sub('[ -]', '_', pkmn)
     pkmn = re.sub('[^a-z_]', '', pkmn)
     return pkmn
