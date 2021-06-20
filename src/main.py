@@ -531,6 +531,21 @@ def about(app, message):
         disable_web_page_preview=True
     )
 
+    
+    
+    
+    # ===== tms command =====
+@app.on_message(Filters.command(['tms', 'tms@hexa_dex_bot']))
+def about(app, message):
+    text = texts['tms']
+    markup = InlineKeyboardMarkup([[
+        InlineKeyboardButton(
+            text='tms list',
+            url='https://telegra.ph/file/8d39d02c47da829199810.png'
+        )
+    ]])
+    
+    
 
 # ===== Raid commands =====
 @app.on_message(Filters.command(['addcode', 'addcode@hexa_dex_bot']))
