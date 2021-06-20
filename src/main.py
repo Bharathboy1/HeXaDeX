@@ -15,7 +15,7 @@ app = Client(
     api_id=Config.aid,
     api_hash=Config.ahash,
     bot_token=Config.bot_token,
-    session_name='inhunmanDexBot'
+    session_name='hexadex'
 )
 
 texts = json.load(open('src/texts.json', 'r'))
@@ -375,7 +375,7 @@ def pkmn_search(app, message):
 
 def best_matches(app, message, result):
     text = texts['results']
-    emoji_list = ['❶', '❷', '❸']
+    emoji_list = ['❶.', '❷.', '❸.']
     index = 0
     for dictt in result:
         pkmn = dictt['pkmn']
