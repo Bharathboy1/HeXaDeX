@@ -1,6 +1,6 @@
 import json
 import re
-from telegram.ext import CommandHandler
+
 import time
 from pyrogram import Client, Filters
 from pyrogram import (InlineKeyboardMarkup,
