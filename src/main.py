@@ -42,6 +42,12 @@ def hpin(client, message):
     if chat_type == "private":
         message.reply_text("This command can only be used in a group or channel.")
         return
+    user = message.from_user
+    member = client.get_chat_member(chat_id, user.id)
+    
+    if member.status not in ['administrator', 'creator']:
+        message.reply_text('You must be a group admin to use this command.')
+        return
     
     if message.reply_to_message:
         message_id = message.reply_to_message.message_id
@@ -68,18 +74,13 @@ def hpin(client, message):
     except (IndexError, ValueError):
         duration = 10
     
-    user = message.from_user
-    if user.id != 572621020:
-               message.reply_text('Only Hexa messages can be pinned.')
-               return        
+    
+    if not message.reply_to_message or message.reply_to_message.from_user.id != 572621020:
+        message.reply_text('Please reply to a message from Hexa to pin it.')
+        return        
     
             
     
-    member = client.get_chat_member(chat_id, user.id)
-    
-    if member.status not in ['administrator', 'creator']:
-        message.reply_text('You must be a group admin to use this command.')
-        return
     
     client.pin_chat_message(chat_id, message_id)
     
