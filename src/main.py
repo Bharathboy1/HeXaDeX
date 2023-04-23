@@ -32,7 +32,7 @@ raid_dict = {}
 
 
 
-
+all_enabled = False
 @app.on_message(Filters.command(['hpin', 'hpin@hexa_dex_bot']))
 def hpin(client, message):
     chat_id = message.chat.id
@@ -90,7 +90,7 @@ def hpin(client, message):
         message.reply_to_message.reply_text('Unpinned.')
     else:
         client.send_message(chat_id, text='Unpinned.', reply_to_message_id=message_id)
-
+all_enabled = False
 @app.on_message(Filters.command(['hpinall', 'hpinall@hexa_dex_bot']))
 def hpinall(client, message):
     chat_id = message.chat.id
