@@ -63,14 +63,16 @@ def hpin(client, message):
     
     try:
         duration_str = message.text.split()[1]
-        duration = int(duration_str[:-1])
-        unit = duration_str[-1]
+        duration = int(re.sub(r'\D', '', duration_str))
+        unit = duration_str[-1] if duration_str[-1] in ['h', 'm', 's'] else 'm'
+     
         if unit == 'h':
             duration *= 60
         elif unit == 's':
             duration //= 60
         elif unit == 'm':
             pass
+        
         else:
             raise ValueError
         if duration > 30:
