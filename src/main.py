@@ -36,6 +36,12 @@ raid_dict = {}
 @app.on_message(Filters.command(['hpin', 'hpin@hexa_dex_bot']))
 def hpin(client, message):
     chat_id = message.chat.id
+    chat_type = message.chat.type
+
+
+    if chat_type == "private":
+        message.reply_text("This command can only be used in a group or channel.")
+        return
     
     if message.reply_to_message:
         message_id = message.reply_to_message.message_id
@@ -54,10 +60,11 @@ def hpin(client, message):
         message.reply_text('You must be a group admin to use this command.')
         return
     
-    client.pin_chat_message(chat_id, message_id, timeout=duration*60)
+    client.pin_chat_message(chat_id, message_id)
     
     message.reply_text(f'Message has been pinned for {duration} minute(s).')
-
+    time.sleep(duration * 60)
+    client.unpin_chat_message(chat_id)
 
 
 
