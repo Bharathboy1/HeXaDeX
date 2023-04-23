@@ -31,7 +31,7 @@ raid_dict = {}
 
 
 
-
+allowed_chat_ids = set()
 all_enabled = False
 @app.on_message(Filters.command(['hpin', 'hpin@hexa_dex_bot']))
 def hpin(client, message):
@@ -45,6 +45,10 @@ def hpin(client, message):
     
     if member.status not in ['administrator', 'creator']:
         message.reply_text('You must be a group admin to use this command.')
+        return
+    
+    if chat_id not in allowed_chat_ids and not all_enabled:
+        message.reply_text('Sorry, this command is not enabled in this group.')
         return
    
     if not message.reply_to_message or message.reply_to_message.from_user.id != 572621020:
@@ -95,9 +99,7 @@ def hpinall(client, message):
     if member.status not in ['administrator', 'creator']:
         message.reply_text('You must be a group admin to use this command.')
         return
-    if chat_id not in allowed_chat_ids and not all_enabled:
-        message.reply_text('Sorry, this command is enabled for only admins in this group.')
-        return
+    
     
     
     if message.text.split()[1] == 'on':
