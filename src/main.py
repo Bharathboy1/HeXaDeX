@@ -46,7 +46,7 @@ def hpin(client, message):
         message.reply_text('You must be a group admin to use this command.')
         return
    
-    if not message.reply_to_message_id or message.reply_to_message.from_user.id != 572621020:
+    if not message.reply_to_message or message.reply_to_message.from_user.id != 572621020:
         message.reply_text('Please reply to a message from Hexa to pin it.')
         return   
     
@@ -73,15 +73,7 @@ def hpin(client, message):
             
             duration = 60
     except (IndexError, ValueError):
-        duration = 10
-    
-    
-    
-         
-    
-            
-    
-    
+        duration = 10  
     client.pin_chat_message(chat_id, message_id)
     
     message.reply_text(f'Message has been pinned for {duration} minute(s).')
