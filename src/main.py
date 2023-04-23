@@ -87,7 +87,7 @@ def hpin(client, message):
     message.reply_text(f'Message has been pinned for {duration} minute(s).')
     time.sleep(duration * 60)
     client.unpin_chat_message(chat_id)
-    user_link = message.from_user.mention_html()
+    user_link = message.from_user.mention()
     if message.reply_to_message:
         message.reply_to_message.reply_text(f'Unpinned msg pinned by {user_link} for {duration} minute(s).', reply_to_message_id=message_id)
     else:
