@@ -43,9 +43,9 @@ def hpin(client, message):
     user = message.from_user
     member = client.get_chat_member(chat_id, user.id)
     
-    if member.status not in ['administrator', 'creator']:
-        message.reply_text('You must be a group admin to use this command.')
-        return
+    #if member.status not in ['administrator', 'creator']:
+       # message.reply_text('You must be a group admin to use this command.')
+        #return
     
     if chat_id not in allowed_chat_ids and not all_enabled:
         message.reply_text('Sorry, this command is not enabled in this group.')
