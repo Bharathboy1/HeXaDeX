@@ -77,7 +77,7 @@ def hpin(client, message):
            message.reply_text('Maximum pinning duration is 30 min.')
         if duration < 1:
            message.reply_text('Minimum pinning duration is 1 min.')
-           duration = 10
+           return
     except (IndexError, ValueError):
         duration = 10  
     client.pin_chat_message(chat_id, message_id)
