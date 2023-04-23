@@ -33,7 +33,7 @@ raid_dict = {}
 
 allowed_chat_ids = set()
 all_enabled = False
-@app.on_message(Filters.command(['hpin', 'hpin@hexa_dex_bot']))
+@app.on_message(Filters.command(['tpin', 'tpin@hexa_dex_bot']))
 def hpin(client, message):
     chat_id = message.chat.id
     chat_type = message.chat.type
@@ -82,14 +82,14 @@ def hpin(client, message):
     client.pin_chat_message(chat_id, message_id)
     
     message.reply_text(f'Message has been pinned for {duration} minute(s).')
-    time.sleep(duration_sec)
+    time.sleep(duration)
     client.unpin_chat_message(chat_id)
     if message.reply_to_message:
         message.reply_to_message.reply_text('Unpinned.')
     else:
         client.send_message(chat_id, text='Unpinned.', reply_to_message_id=message_id)
 all_enabled = False
-@app.on_message(Filters.command(['hpinall', 'hpinall@hexa_dex_bot']))
+@app.on_message(Filters.command(['tpinall', 'tpinall@hexa_dex_bot']))
 def hpinall(client, message):
     chat_id = message.chat.id
     user = message.from_user
