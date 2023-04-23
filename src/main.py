@@ -49,9 +49,10 @@ def hpin(client, message):
             message.reply_text('Sorry, this is enabled for only admin in this group.')
             return
 
-    if message.reply_to_message is none or message.reply_to_message.from_user.id != 572621020:
-        message.reply_text('Please reply to a message from Hexa to pin it.')
-        return
+    if not message.reply_to_message or not message.reply_to_message.from_user or message.reply_to_message.from_user.id != 572621020:
+    message.reply_text('Please reply to a message from Hexa to pin it.')
+    return   
+
 
    # if message.reply_to_message.from_user.id != 572621020:
        # message.reply_text('Please reply to a message from Hexa to pin it.')
