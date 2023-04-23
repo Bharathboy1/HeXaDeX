@@ -33,7 +33,7 @@ raid_dict = {}
 
 
 
-@app.on_message(filters.command(['hpin', 'hpin@hexa_dex_bot']))
+@app.on_message(Filters.command(['hpin', 'hpin@hexa_dex_bot']))
 def hpin(client, message):
     chat_id = message.chat.id
     
