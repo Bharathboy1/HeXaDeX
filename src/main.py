@@ -61,16 +61,21 @@ def hpin(client, message):
             pass
         else:
             raise ValueError
-        if duration > 60:
-    message.reply_text('Maximum pinning duration is 1 hour.')
-    duration = 60
+        if duration > 30:
+            message.reply_text('Maximum pinning duration is 30 min.')
+            
+            duration = 60
     except (IndexError, ValueError):
         duration = 10
     
     user = message.from_user
-    if user.id != 572621020:
-        message.reply_text('Only Hexa messages can be pinned.')
-        return
+            if user.id != 572621020:
+               message.reply_text('Only Hexa messages can be pinned.')
+               return
+    
+            
+    user = message.from_user
+    member = client.get_chat_member(chat_id, user.id)
     
     if member.status not in ['administrator', 'creator']:
         message.reply_text('You must be a group admin to use this command.')
@@ -78,15 +83,13 @@ def hpin(client, message):
     
     client.pin_chat_message(chat_id, message_id)
     
-    message.reply_text(f'Message has been pinned for {duration} minute/s.')
-    time.sleep(duration * 60)
+    message.reply_text(f'Message has been pinned for {duration} minute(s).')
+    time.sleep(duration_sec)
     client.unpin_chat_message(chat_id)
-
     if message.reply_to_message:
-        message.reply_to_message.reply_text('Unpinned this message after {duration} minute/s.')
+        message.reply_to_message.reply_text('Unpinned.')
     else:
         client.send_message(chat_id, text='Unpinned.', reply_to_message_id=message_id)
-
 
 @app.on_message(Filters.command(['hpinall', 'hpinall@hexa_dex_bot']))
 def hpinall(client, message):
