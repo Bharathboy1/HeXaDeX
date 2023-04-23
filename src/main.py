@@ -1,6 +1,7 @@
 import json
 import re
-
+from telegram.ext import CommandHandler
+import time
 from pyrogram import Client, Filters
 from pyrogram import (InlineKeyboardMarkup,
                       InlineKeyboardButton,
@@ -25,6 +26,39 @@ jtype = json.load(open('src/type.json', 'r'))
 
 usage_dict = {'vgc': None}
 raid_dict = {}
+
+
+
+
+
+
+@app.on_message(Filters.command(['hpin', 'hpin@hexa_dex_bot']))
+def hpin(update, context):
+    chat_id = update.effective_chat.id
+    
+    if update.message.reply_to_message:
+        message_id = update.message.reply_to_message.message_id
+    else:
+        message_id = update.message.message_id
+    
+    try:
+        duration = int(context.args[0])
+    except (IndexError, ValueError):
+        duration = 10
+    
+    user = update.effective_user
+    member = context.bot.get_chat_member(chat_id, user.id)
+    
+    if member.status not in ['administrator', 'creator']:
+        update.message.reply_text('You must be a group admin to use this command.')
+        return
+    
+    context.bot.pin_chat_message(chat_id, message_id, timeout=duration*60)
+    
+    update.message.reply_text(f'Message has been pinned for {duration} minute(s).')
+
+
+
 
 
 # ===== Stats =====
