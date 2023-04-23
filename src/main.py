@@ -68,7 +68,7 @@ def hpin(client, message):
         if unit == 'h':
             duration *= 60
         elif unit == 's':
-            duration //= 60
+            duration *= 60
         elif unit == 'm':
             pass
         else:
@@ -82,7 +82,7 @@ def hpin(client, message):
     client.pin_chat_message(chat_id, message_id)
     
     message.reply_text(f'Message has been pinned for {duration} minute(s).')
-    time.sleep(duration*60)
+    time.sleep(duration * 60)
     client.unpin_chat_message(chat_id)
     if message.reply_to_message:
         message.reply_to_message.reply_text('Unpinned.')
