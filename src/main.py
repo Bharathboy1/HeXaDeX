@@ -46,15 +46,31 @@ def hpin(client, message):
     if message.reply_to_message:
         message_id = message.reply_to_message.message_id
     else:
-        message_id = message.message_id
+        message.reply_text('Please reply to any hexa message to pin it.')
+        return
     
     try:
-        duration = int(message.text.split()[1])
+        duration_str = message.text.split()[1]
+        duration = int(duration_str[:-1])
+        unit = duration_str[-1]
+        if unit == 'h':
+            duration *= 60
+        elif unit == 's':
+            duration //= 60
+        elif unit == 'm':
+            pass
+        else:
+            raise ValueError
+        if duration > 60:
+    message.reply_text('Maximum pinning duration is 1 hour.')
+    duration = 60
     except (IndexError, ValueError):
         duration = 10
     
     user = message.from_user
-    member = client.get_chat_member(chat_id, user.id)
+    if user.id != 572621020:
+        message.reply_text('Only Hexa messages can be pinned.')
+        return
     
     if member.status not in ['administrator', 'creator']:
         message.reply_text('You must be a group admin to use this command.')
@@ -62,11 +78,40 @@ def hpin(client, message):
     
     client.pin_chat_message(chat_id, message_id)
     
-    message.reply_text(f'Message has been pinned for {duration} minute(s).')
+    message.reply_text(f'Message has been pinned for {duration} minute/s.')
     time.sleep(duration * 60)
     client.unpin_chat_message(chat_id)
 
+    if message.reply_to_message:
+        message.reply_to_message.reply_text('Unpinned this message after {duration} minute/s.')
+    else:
+        client.send_message(chat_id, text='Unpinned.', reply_to_message_id=message_id)
 
+
+@app.on_message(Filters.command(['hpinall', 'hpinall@hexa_dex_bot']))
+def hpinall(client, message):
+    chat_id = message.chat.id
+    
+    user = message.from_user
+    member = client.get_chat_member(chat_id, user.id)
+    
+    if member.status not in ['administrator', 'creator']:
+        message.reply_text('You must be a group admin to use this command.')
+        return
+    if chat_id not in allowed_chat_ids and not all_enabled:
+        message.reply_text('Sorry, this command is enabled for only admins in this group.')
+        return
+    
+    global all_enabled
+    if message.text.split()[1] == 'on':
+        all_enabled = True
+        message.reply_text('All users can now use the /hpin command.')
+    elif message.text.split()[1] == 'off':
+        all_enabled = False
+        message.reply_text('Only admins can use the /hpin command.')
+    else:
+        message.reply_text('Invalid argument. Use /hpinall on or /hpinall off.')
+    
 
 
 # ===== Stats =====
