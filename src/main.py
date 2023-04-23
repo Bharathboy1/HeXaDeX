@@ -50,13 +50,10 @@ def hpin(client, message):
             return
 
     if not message.reply_to_message or not message.reply_to_message.from_user or message.reply_to_message.from_user.id != 572621020:
-    message.reply_text('Please reply to a message from Hexa to pin it.')
-    return   
+           message.reply_text('Please reply to a message from Hexa to pin it.')
+           return   
 
-
-   # if message.reply_to_message.from_user.id != 572621020:
-       # message.reply_text('Please reply to a message from Hexa to pin it.')
-     #   return  
+  
     
     if chat_type == "private":
         message.reply_text("This command can only be used in a group or channel.")
