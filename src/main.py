@@ -32,30 +32,31 @@ raid_dict = {}
 
 
 
-@app.on_message(Filters.command(['hpin', 'hpin@hexa_dex_bot']))
-def hpin(update, context):
-    chat_id = update.effective_chat.id
+
+@app.on_message(filters.command(['hpin', 'hpin@hexa_dex_bot']))
+def hpin(client, message):
+    chat_id = message.chat.id
     
-    if update.message.reply_to_message:
-        message_id = update.message.reply_to_message.message_id
+    if message.reply_to_message:
+        message_id = message.reply_to_message.message_id
     else:
-        message_id = update.message.message_id
+        message_id = message.message_id
     
     try:
-        duration = int(context.args[0])
+        duration = int(message.text.split()[1])
     except (IndexError, ValueError):
         duration = 10
     
-    user = update.effective_user
-    member = context.bot.get_chat_member(chat_id, user.id)
+    user = message.from_user
+    member = client.get_chat_member(chat_id, user.id)
     
     if member.status not in ['administrator', 'creator']:
-        update.message.reply_text('You must be a group admin to use this command.')
+        message.reply_text('You must be a group admin to use this command.')
         return
     
-    context.bot.pin_chat_message(chat_id, message_id, timeout=duration*60)
+    client.pin_chat_message(chat_id, message_id, timeout=duration*60)
     
-    update.message.reply_text(f'Message has been pinned for {duration} minute(s).')
+    message.reply_text(f'Message has been pinned for {duration} minute(s).')
 
 
 
