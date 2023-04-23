@@ -69,12 +69,12 @@ def hpin(client, message):
         duration = 10
     
     user = message.from_user
-            if user.id != 572621020:
+    if user.id != 572621020:
                message.reply_text('Only Hexa messages can be pinned.')
-               return
+               return        
     
             
-    user = message.from_user
+    
     member = client.get_chat_member(chat_id, user.id)
     
     if member.status not in ['administrator', 'creator']:
