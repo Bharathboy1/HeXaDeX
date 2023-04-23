@@ -94,7 +94,7 @@ all_enabled = False
 @app.on_message(Filters.command(['hpinall', 'hpinall@hexa_dex_bot']))
 def hpinall(client, message):
     chat_id = message.chat.id
-    
+    global all_enabled
     user = message.from_user
     member = client.get_chat_member(chat_id, user.id)
     
@@ -105,7 +105,7 @@ def hpinall(client, message):
         message.reply_text('Sorry, this command is enabled for only admins in this group.')
         return
     
-    global all_enabled
+    
     if message.text.split()[1] == 'on':
         all_enabled = True
         message.reply_text('All users can now use the /hpin command.')
