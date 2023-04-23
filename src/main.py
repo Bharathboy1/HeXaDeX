@@ -68,7 +68,7 @@ def hpin(client, message):
         if unit == 'h':
             duration *= 60
         elif unit == 's':
-            duration *= 60
+            duration //= 60
         elif unit == 'm':
             pass
         else:
