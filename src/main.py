@@ -77,7 +77,7 @@ def hpin(client, message):
            message.reply_text('Maximum pinning duration is 30 min.')
         if duration < 1:
            message.reply_text('Minimum pinning duration is 1 min.')
-           duration = 10
+            duration = 10
     except (IndexError, ValueError):
         duration = 10  
     client.pin_chat_message(chat_id, message_id)
@@ -86,7 +86,7 @@ def hpin(client, message):
     time.sleep(duration * 60)
     client.unpin_chat_message(chat_id)
     if message.reply_to_message:
-        message.reply_to_message.reply_text(f'Unpinned msg pinned by {message.reply_to_message.from_user.first_name} for {duration} minute(s).'), reply_to_message_id=message_id))
+        message.reply_to_message.reply_text(f'Unpinned msg pinned by {message.reply_to_message.from_user.first_name} for {duration} minute(s).'), reply_to_message_id=message_id)
     else:
         client.send_message(chat_id, message.reply_text(f'Unpinned msg pinned by {message.reply_to_message.from_user.first_name} for {duration} minute(s).'), reply_to_message_id=message_id)
 all_enabled = False
