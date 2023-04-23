@@ -86,9 +86,9 @@ def hpin(client, message):
     time.sleep(duration * 60)
     client.unpin_chat_message(chat_id)
     if message.reply_to_message:
-        message.reply_to_message.reply_text(f'Unpinned msg pinned by {message.reply_to_message.from_user.first_name} for {duration} minute(s).'), reply_to_message_id=message_id)
+        message.reply_to_message.reply_text(f'Unpinned msg pinned by {message.reply_to_message.from_user.first_name} for {duration} minute(s).', reply_to_message_id=message_id)
     else:
-        client.send_message(chat_id, message.reply_text(f'Unpinned msg pinned by {message.reply_to_message.from_user.first_name} for {duration} minute(s).'), reply_to_message_id=message_id)
+        client.send_message(chat_id, message.reply_text(f'Unpinned msg pinned by {message.reply_to_message.from_user.first_name} for {duration} minute(s).', reply_to_message_id=message_id)
 all_enabled = False
 @app.on_message(Filters.command(['tpinall', 'tpinall@hexa_dex_bot']))
 def hpinall(client, message):
