@@ -37,7 +37,8 @@ all_enabled = False
 def hpin(client, message):
     chat_id = message.chat.id
     chat_type = message.chat.type
-     
+    message_id = message.reply_to_message.message_id
+ 
 
     user = message.from_user
     member = client.get_chat_member(chat_id, user.id)
